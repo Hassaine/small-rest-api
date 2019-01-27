@@ -1,6 +1,6 @@
 # small restApi with express
 
-this is a small and configurable rest API
+this is a small and configurable rest API with mysql database
 
 ## Installation
 
