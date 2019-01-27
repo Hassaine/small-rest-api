@@ -1,0 +1,30 @@
+{
+  "connection": {
+    "config": {
+      "host": "localhost",
+      "user": "root",
+      "password": "",
+      "database": "rest_api_db"
+    },
+    "protocol": {
+      "name": "https",
+      "option": { "certPath": "./cert.pem", "keyPath": "key.pem" }
+    }
+  },
+  "db": {
+    "tables": [
+      {
+        "name": "contact",
+        "id": "id",
+        "schema": ["name", "email", "phone"],
+        "rooter": "/contacts"
+      },
+      {
+        "name": "todo",
+        "id": "id",
+        "schema": ["title", "description"],
+        "rooter": "/todo"
+      }
+    ]
+  }
+}
