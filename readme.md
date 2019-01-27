@@ -57,3 +57,9 @@ the configuration.json file contains all the configuration needed for the api
       }
     ]
 ```
+
+so all you need is to configure the file and run your server
+
+## exemple
+
+the contact table can be reach at 'url:port/contacts' or 'url:port/contacts/:id'
