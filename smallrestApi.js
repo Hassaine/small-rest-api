@@ -9,7 +9,6 @@ let configuration = {};
 const configFile = fs.readFileSync(process.argv[2]);
 
 configuration = JSON.parse(configFile);
-console.log(configuration);
 
 //setting mysql connection
 const mysql = require('mysql');
@@ -32,7 +31,8 @@ configuration.db.tables.forEach(element => {
   router
     .route(element.rooter)
     .get((req, res, next) => {
-      connection.query('SELECT * from ' + element.name, function(
+      `SELECT * from ${element.name}`;
+      connection.query(`SELECT * from ${element.name}`, function(
         error,
         results,
         fields
@@ -59,13 +59,9 @@ configuration.db.tables.forEach(element => {
       // console.log(colonnesName);
 
       connection.query(
-        'insert into ' +
-          element.name +
-          ' (' +
-          colonnesName +
-          ') values (' +
-          colonnesSeparation +
-          ')',
+        `insert into ${
+          element.name
+        } (${colonnesName}) values (${colonnesSeparation})`,
         colonnes,
         function(error, results, fields) {
           if (error) throw error;
@@ -81,7 +77,7 @@ configuration.db.tables.forEach(element => {
       const id = req.params['id'];
 
       connection.query(
-        'SELECT * from ' + element.name + ' where ' + element.id + '=?',
+        `SELECT * from ${element.name} where ${element.id}=?`,
         [id],
         function(error, results, fields) {
           if (error) throw error;
@@ -93,7 +89,7 @@ configuration.db.tables.forEach(element => {
     .delete((req, res) => {
       const id = req.params['id'];
       connection.query(
-        'delete  from ' + element.name + ' where ' + element.id + '=?',
+        `delete from ${element.name} where ${element.id}=?`,
         [id],
         function(error, results, fields) {
           if (error) throw error;
@@ -117,7 +113,7 @@ configuration.db.tables.forEach(element => {
       colonnes.push(id);
 
       connection.query(
-        'update ' + element.name + '  set ' + colonnesName + ' where  id=?',
+        `update ${element.name} set ${colonnesName} where ${element.id}=?`,
         colonnes,
         function(error, results, fields) {
           if (error) {
